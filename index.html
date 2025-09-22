@@ -51,11 +51,13 @@
   background-repeat: no-repeat;
 ">
   <div class="max-w-4xl mx-auto p-6">
-    <div class="flex items-center justify-between">
-      <h1 class="text-4xl font-bold mb-4 text-left text-blue-700">
-      ML+Cryptography Seminar
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+      <!-- Logo first on mobile (order-1), second on desktop (md:order-2) -->
+      <img src="mit_lockup_std-three-line_rgb_black.svg" alt="Logo" class="h-12 w-auto mb-4 md:mb-0 md:ml-4 order-1 md:order-2 self-start md:self-auto" />
+      <!-- Title second on mobile (order-2), first on desktop (md:order-1) -->
+      <h1 class="text-4xl font-bold text-left text-blue-700 order-2 md:order-1">
+        ML+Cryptography Seminar
       </h1>
-      <img src="mit_lockup_std-three-line_rgb_black.svg" alt="Logo" class="h-12 w-auto ml-4"/>
     </div>
     <p class="text-lg text-left mb-8">
 <p>
