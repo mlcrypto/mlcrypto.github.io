@@ -1,193 +1,166 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <style>
-    a {
-    text-decoration: none;
-    border-bottom: 1px dotted #1d4ed8; /* blue dotted underline */
-    color: #00008B;
-    transition: border-bottom-color 0.3s ease, color 0.3s ease;
-    }
-    a:hover {
-    border-bottom-color: #f59e0b; /* orange on hover */
-    color: #f59e0b;
-    }
-    h1 {
-    color: #00008B; /* maroon */
-    }
-    /* Override for video link */
-    a.no-dotted {
-    border-bottom: none; /* remove dotted underline */
-    }
-  </style>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ML+Cryptography Seminar</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-  <script>
-    function toggleAbstract(id) {
-      const elem = document.getElementById(id);
-      if (elem.style.display === "none") {
-        elem.style.display = "block";
-      } else {
-        elem.style.display = "none";
-      }
-    }
-  </script>
-
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
-</head>
-<body class="bg-gray-100 text-gray-900" style="
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/MIT_Stata_Center_-_Cambridge%2C_Massachusetts.jpg/1200px-MIT_Stata_Center_-_Cambridge%2C_Massachusetts.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-">
-    <div class="max-w-4xl mx-auto p-6">
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-      <!-- Logo first on mobile (order-1), second on desktop (md:order-2) -->
-      <img src="mit_lockup_std-three-line_rgb_black.svg" alt="Logo" class="h-12 w-auto mb-4 md:mb-0 md:ml-4 order-1 md:order-2 self-start md:self-auto" />
-      <!-- Title second on mobile (order-2), first on desktop (md:order-1) -->
-      <h1 class="text-4xl font-bold text-left text-blue-700 order-2 md:order-1">
-          ML+Cryptography Seminar
-      </h1>
-    </div>
-    <p class="text-lg text-left mb-8">
-        <p>
+   <head>
+      <style>
+         a {
+         text-decoration: none;
+         border-bottom: 1px dotted #1d4ed8; /* blue dotted underline */
+         color: #00008B;
+         transition: border-bottom-color 0.3s ease, color 0.3s ease;
+         }
+         a:hover {
+         border-bottom-color: #f59e0b; /* orange on hover */
+         color: #f59e0b;
+         }
+         h1 {
+         color: #00008B; /* maroon */
+         }
+         /* Override for video link */
+         a.no-dotted {
+         border-bottom: none; /* remove dotted underline */
+         }
+      </style>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>ML+Cryptography Seminar</title>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <script>
+         function toggleAbstract(id) {
+           const elem = document.getElementById(id);
+           if (elem.style.display === "none") {
+             elem.style.display = "block";
+           } else {
+             elem.style.display = "none";
+           }
+         }
+      </script>
+      <script>
+         window.MathJax = {
+           tex: {
+             inlineMath: [['$', '$'], ['\\(', '\\)']],
+             displayMath: [['$$', '$$'], ['\\[', '\\]']]
+           }
+         };
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+   </head>
+   <body class="bg-gray-100 text-gray-900" style="
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/MIT_Stata_Center_-_Cambridge%2C_Massachusetts.jpg/1200px-MIT_Stata_Center_-_Cambridge%2C_Massachusetts.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      ">
+      <div class="max-w-4xl mx-auto p-6">
+         <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <!-- Logo first on mobile (order-1), second on desktop (md:order-2) -->
+            <img src="mit_lockup_std-three-line_rgb_black.svg" alt="Logo" class="h-12 w-auto mb-4 md:mb-0 md:ml-4 order-1 md:order-2 self-start md:self-auto" />
+            <!-- Title second on mobile (order-2), first on desktop (md:order-1) -->
+            <h1 class="text-4xl font-bold text-left text-blue-700 order-2 md:order-1">
+               ML+Cryptography Seminar
+            </h1>
+         </div>
+         <p class="text-lg text-left mb-8">
+         <p>
             Join us for the reading group on ML and cryptography organized by Shafi Goldwasser, Yael Kalai, Jonathan Shafer and Vinod Vaikuntanathan. For questions, feel free to contact <a href="mailto:shaferjo@mit.edu">Jonathan</a>.
-        </p>
-        <br>
-        <p class="text-gray-500 mb-3">📍 Where: Stata Center, Room 32G-575</p>
-        <p class="text-gray-500 mb-3">📅 When: Tuesdays 10:30–12:30</p>
-        <p class="text-gray-500 mb-3">📧 Mailing list: sign up <a href="https://lists.csail.mit.edu/mailman/listinfo/mlcrypto">here</a></p>
-    </p>
-    
-    <div class="grid gap-6">
-
-      <h2 class="text-2xl font-bold mt-10 text-blue-700">Fall 2025</h2>
-
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="text-xl font-semibold mb-1">Why Language Models Hallucinate</h3>
-        <p class="text-md text-gray-700 mb-1">Adam Tauman Kalai (OpenAI)</p>
-        <p class="text-sm text-gray-500 mb-2">November 4, 2025</p>
-        <div class="flex items-center space-x-4">
-            <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-104')">
-                Abstract
-            </button>
-            <!-- <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-11-04/Hallucinations.pdf">Slides</a> -->
-        </div>
-        <p id="abstract-104" class="text-sm text-gray-800 hidden" style="display:none;">
-            Large language models (LLMs) sometimes generate statements that are plausible but factually incorrect—a phenomenon commonly called “hallucination.” We argue that these errors are not mysterious failures of architecture or reasoning, but rather predictable consequences of standard training and evaluation incentives.
-            
-            <br/>
-            <br/>
-
-            We show (i) that hallucinations can be viewed as classification errors: when pretrained models cannot reliably distinguish a false statement from a true one, they may produce the false option rather than saying I don’t know; (ii) that optimization of benchmark performance encourages guessing rather than abstaining, since most evaluation metrics penalize expressing uncertainty; and (iii) that a possible mitigation path lies in revising existing benchmarks to reward calibrated abstention, thus realigning incentives in model development.
-
-            <br/>
-            <br/>
-
-            Joint work with Santosh Vempala (Georgia Tech) and Ofir Nachum & Edwin Zhang (OpenAI)
-        </p>
+         </p>
+         <br>
+         <p class="text-gray-500 mb-3">📍 Where: Stata Center, Room 32G-575</p>
+         <p class="text-gray-500 mb-3">📅 When: Tuesdays 10:30–12:30</p>
+         <p class="text-gray-500 mb-3">📧 Mailing list: sign up <a href="https://lists.csail.mit.edu/mailman/listinfo/mlcrypto">here</a></p>
+         </p>
+         <div class="grid gap-6">
+            <h2 class="text-2xl font-bold mt-10 text-blue-700">Fall 2025</h2>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+               <h3 class="text-xl font-semibold mb-1">Why Language Models Hallucinate</h3>
+               <p class="text-md text-gray-700 mb-1">Adam Tauman Kalai (OpenAI)</p>
+               <p class="text-sm text-gray-500 mb-2">November 4, 2025</p>
+               <div class="flex items-center space-x-4">
+                  <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-104')">
+                  Abstract
+                  </button>
+                  <!-- <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-11-04/Hallucinations.pdf">Slides</a> -->
+               </div>
+               <p id="abstract-104" class="text-sm text-gray-800 hidden" style="display:none;">
+                  Large language models (LLMs) sometimes generate statements that are plausible but factually incorrect—a phenomenon commonly called “hallucination.” We argue that these errors are not mysterious failures of architecture or reasoning, but rather predictable consequences of standard training and evaluation incentives.
+                  <br/>
+                  <br/>
+                  We show (i) that hallucinations can be viewed as classification errors: when pretrained models cannot reliably distinguish a false statement from a true one, they may produce the false option rather than saying I don’t know; (ii) that optimization of benchmark performance encourages guessing rather than abstaining, since most evaluation metrics penalize expressing uncertainty; and (iii) that a possible mitigation path lies in revising existing benchmarks to reward calibrated abstention, thus realigning incentives in model development.
+                  <br/>
+                  <br/>
+                  Joint work with Santosh Vempala (Georgia Tech) and Ofir Nachum & Edwin Zhang (OpenAI)
+               </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+               <h3 class="text-xl font-semibold mb-1">What Can Cryptography Tell Us About AI?</h3>
+               <p class="text-md text-gray-700 mb-1">Greg Gluch (Simons Institute, UC Berkeley)</p>
+               <p class="text-sm text-gray-500 mb-2">October 14, 2025</p>
+               <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-103')">
+               Abstract
+               </button>
+               <p id="abstract-103" class="text-sm text-gray-800 hidden" style="display:none;">
+                  I will present three results that use cryptographic assumptions to characterize both the limits and possibilities of AI safety. First, we show that AI alignment cannot be achieved using only black-box filters of harmful content. Second, we prove a separation between mitigation and detection at inference time, where mitigation refines an LLM’s output using additional computation to compute a safer or more accurate result. Third, we conduct a meta-analysis of watermarks, adversarial defenses, and transferable attacks, showing that for every learning task, at least one of these three schemes must exist.
+                  <br/>
+                  <br/>
+                  Each result carries a broader message: the first argues for the necessity of weight access in AI auditing; the second provides a rule of thumb for allocating inference-time resources when safety is the goal; and the third offers an explanation for why adversarial examples often transfer across different LLMs.
+                  <br/>
+                  <br/>
+                  Based on (1) <a href="https://arxiv.org/abs/2507.07341">https://arxiv.org/abs/2507.07341</a>, (2) <a href="https://arxiv.org/abs/2504.20310">https://arxiv.org/abs/2504.20310</a>, (3) <a href="https://arxiv.org/abs/2410.08864">https://arxiv.org/abs/2410.08864</a>.
+                  <br/>
+                  <br/>
+                  Bio. Greg Gluch is a postdoctoral researcher at the Simons Institute, UC Berkeley, working with Shafi Goldwasser, and currently a long-term visitor at MIT. He received his PhD from EPFL, advised by Rüdiger Urbanke and Michael Kapralov. His research spans AI safety—covering topics such as adversarial examples, alignment, and verifiability—and quantum interactive proofs and their links to physics.
+               </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+               <h3 class="text-xl font-semibold mb-1">Model Stealing: Recent Results and Open Problems</h3>
+               <p class="text-md text-gray-700 mb-1">Ankur Moitra (MIT)</p>
+               <p class="text-sm text-gray-500 mb-2">October 7, 2025</p>
+               <div class="flex items-center space-x-4">
+                  <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-102')">
+                  Abstract
+                  </button>
+                  <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-10-07/Model Stealing.pdf">Slides</a>
+               </div>
+               <p id="abstract-102" class="text-sm text-gray-800 hidden" style="display:none;">
+                  Ankur will introduce the problem of model stealing and describe some recent results, followed by a discussion about interesting future directions.
+                  <br/>
+                  <br/>
+                  Based on: A Liu, A Moitra. <a href="https://dl.acm.org/doi/pdf/10.1145/3717823.3718220">Model Stealing for Any Low-Rank Language Model</a>. STOC 2025.
+               </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+               <h3 class="text-xl font-semibold mb-1">Proofs for Distribution Properties: Review of Recent Results</h3>
+               <p class="text-md text-gray-700 mb-1">Tal Herman (MIT)</p>
+               <p class="text-sm text-gray-500 mb-2">September 30, 2025</p>
+               <div class="flex items-center space-x-4">
+                  <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-101')">
+                  Abstract
+                  </button>
+                  <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-09-30/Distribution Testing.pdf">Slides</a>
+               </div>
+               <p id="abstract-101" class="text-sm text-gray-800 hidden" style="display:none;">
+                  Assume some untrusted powerful data analyst claims to have drawn many samples from an unknown distribution, ran some complicated analysis over the samples, and reveals to us their conclusion. Say that we are granted few samples from the same distribution. Can we verify that the results of the analyses are approximately correct?
+                  <br/><br/>
+                  In this talk we review a recent line of work that shows that the answer to this question is positive, and present the constructions of proof-systems that allow a probabilistic verifier to ascertain that results of an analysis are approximately correct, while drawing fewer samples and using less computational resources than would be needed to replicate the analysis. We focus on distribution testing problems: verifying that an unknown distribution is close to having a claimed property.
+                  <br/><br/>
+                  Moving from data science to AI: Can similar tools and interactive proofs provide a theoretical framework for addressing questions of verification in the context of AI systems? We will open the floor for discussion and ideas.
+               </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+               <h3 class="text-xl font-semibold mb-1">A Survey of Cryptographic Watermarks for AI-Generated Content</h3>
+               <p class="text-md text-gray-700 mb-1">Miranda Christ (Columbia)</p>
+               <p class="text-sm text-gray-500 mb-2">September 23, 2025</p>
+               <div class="flex items-center space-x-4">
+                  <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-100')">
+                  Abstract
+                  </button>
+                  <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-09-23/watermark-tutorial-mit.pptx">Slides</a>
+               </div>
+               <p id="abstract-100" class="text-sm text-gray-800 hidden" style="display:none;">
+                  Generative AI watermarks are hidden patterns embedded in AI-generated content to facilitate its detection. A recent line of work draws on cryptography to define desired properties of watermarks and realize these properties with surprisingly simple constructions. In this talk, I will survey common definitions and approaches, focusing on those from the cryptography community. I'll end with some open questions that I find interesting.
+               </p>
+            </div>
+         </div>
       </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="text-xl font-semibold mb-1">What Can Cryptography Tell Us About AI?</h3>
-        <p class="text-md text-gray-700 mb-1">Greg Gluch (Simons Institute, UC Berkeley)</p>
-        <p class="text-sm text-gray-500 mb-2">October 14, 2025</p>
-        <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-103')">
-            Abstract
-        </button>
-        <p id="abstract-103" class="text-sm text-gray-800 hidden" style="display:none;">
-            I will present three results that use cryptographic assumptions to characterize both the limits and possibilities of AI safety. First, we show that AI alignment cannot be achieved using only black-box filters of harmful content. Second, we prove a separation between mitigation and detection at inference time, where mitigation refines an LLM’s output using additional computation to compute a safer or more accurate result. Third, we conduct a meta-analysis of watermarks, adversarial defenses, and transferable attacks, showing that for every learning task, at least one of these three schemes must exist.
-
-            <br/>
-            <br/>
-            
-            Each result carries a broader message: the first argues for the necessity of weight access in AI auditing; the second provides a rule of thumb for allocating inference-time resources when safety is the goal; and the third offers an explanation for why adversarial examples often transfer across different LLMs.
-
-            <br/>
-            <br/>
-            
-            Based on (1) <a href="https://arxiv.org/abs/2507.07341">https://arxiv.org/abs/2507.07341</a>, (2) <a href="https://arxiv.org/abs/2504.20310">https://arxiv.org/abs/2504.20310</a>, (3) <a href="https://arxiv.org/abs/2410.08864">https://arxiv.org/abs/2410.08864</a>.
-
-            <br/>
-            <br/>
-
-            Bio. Greg Gluch is a postdoctoral researcher at the Simons Institute, UC Berkeley, working with Shafi Goldwasser, and currently a long-term visitor at MIT. He received his PhD from EPFL, advised by Rüdiger Urbanke and Michael Kapralov. His research spans AI safety—covering topics such as adversarial examples, alignment, and verifiability—and quantum interactive proofs and their links to physics.
-        </p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="text-xl font-semibold mb-1">Model Stealing: Recent Results and Open Problems</h3>
-        <p class="text-md text-gray-700 mb-1">Ankur Moitra (MIT)</p>
-        <p class="text-sm text-gray-500 mb-2">October 7, 2025</p>
-        <div class="flex items-center space-x-4">
-            <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-102')">
-                Abstract
-            </button>
-            <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-10-07/Model Stealing.pdf">Slides</a>
-        </div>
-        <p id="abstract-102" class="text-sm text-gray-800 hidden" style="display:none;">
-            Ankur will introduce the problem of model stealing and describe some recent results, followed by a discussion about interesting future directions.
-
-            <br/>
-            <br/>
-            
-            Based on: A Liu, A Moitra. <a href="https://dl.acm.org/doi/pdf/10.1145/3717823.3718220">Model Stealing for Any Low-Rank Language Model</a>. STOC 2025.
-        </p>
-      </div>
-
-    <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="text-xl font-semibold mb-1">Proofs for Distribution Properties: Review of Recent Results</h3>
-        <p class="text-md text-gray-700 mb-1">Tal Herman (MIT)</p>
-        <p class="text-sm text-gray-500 mb-2">September 30, 2025</p>
-        <div class="flex items-center space-x-4">
-            <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-101')">
-                Abstract
-            </button>
-            <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-09-30/Distribution Testing.pdf">Slides</a>
-        </div>
-        <p id="abstract-101" class="text-sm text-gray-800 hidden" style="display:none;">
-            Assume some untrusted powerful data analyst claims to have drawn many samples from an unknown distribution, ran some complicated analysis over the samples, and reveals to us their conclusion. Say that we are granted few samples from the same distribution. Can we verify that the results of the analyses are approximately correct?
-
-            <br/><br/>
-          
-            In this talk we review a recent line of work that shows that the answer to this question is positive, and present the constructions of proof-systems that allow a probabilistic verifier to ascertain that results of an analysis are approximately correct, while drawing fewer samples and using less computational resources than would be needed to replicate the analysis. We focus on distribution testing problems: verifying that an unknown distribution is close to having a claimed property.
-          
-            <br/><br/>
-          
-            Moving from data science to AI: Can similar tools and interactive proofs provide a theoretical framework for addressing questions of verification in the context of AI systems? We will open the floor for discussion and ideas.
-        </p>
-    </div>
-    
-    <div class="bg-white p-6 rounded-xl shadow-md">
-        <h3 class="text-xl font-semibold mb-1">A Survey of Cryptographic Watermarks for AI-Generated Content</h3>
-        <p class="text-md text-gray-700 mb-1">Miranda Christ (Columbia)</p>
-        <p class="text-sm text-gray-500 mb-2">September 23, 2025</p>
-        <div class="flex items-center space-x-4">
-            <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-100')">
-                Abstract
-            </button>
-            <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-09-23/watermark-tutorial-mit.pptx">Slides</a>
-        </div>
-        <p id="abstract-100" class="text-sm text-gray-800 hidden" style="display:none;">
-            Generative AI watermarks are hidden patterns embedded in AI-generated content to facilitate its detection. A recent line of work draws on cryptography to define desired properties of watermarks and realize these properties with surprisingly simple constructions. In this talk, I will survey common definitions and approaches, focusing on those from the cryptography community. I'll end with some open questions that I find interesting.
-        </p>
-    </div>
-
-    </div>
-  </div>
-</body>
+   </body>
 </html>
