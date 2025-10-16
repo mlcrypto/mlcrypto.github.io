@@ -78,6 +78,31 @@
       <h2 class="text-2xl font-bold mt-10 text-blue-700">Fall 2025</h2>
 
       <div class="bg-white p-6 rounded-xl shadow-md">
+        <h3 class="text-xl font-semibold mb-1">Why Language Models Hallucinate</h3>
+        <p class="text-md text-gray-700 mb-1">Adam Tauman Kalai (OpenAI)</p>
+        <p class="text-sm text-gray-500 mb-2">November 4, 2025</p>
+        <div class="flex items-center space-x-4">
+            <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-104')">
+                Abstract
+            </button>
+            <!-- <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-11-04/Hallucinations.pdf">Slides</a> -->
+        </div>
+        <p id="abstract-104" class="text-sm text-gray-800 hidden" style="display:none;">
+            Large language models (LLMs) sometimes generate statements that are plausible but factually incorrect—a phenomenon commonly called “hallucination.” We argue that these errors are not mysterious failures of architecture or reasoning, but rather predictable consequences of standard training and evaluation incentives.
+            
+            <br/>
+            <br/>
+
+            We show (i) that hallucinations can be viewed as classification errors: when pretrained models cannot reliably distinguish a false statement from a true one, they may produce the false option rather than saying I don’t know; (ii) that optimization of benchmark performance encourages guessing rather than abstaining, since most evaluation metrics penalize expressing uncertainty; and (iii) that a possible mitigation path lies in revising existing benchmarks to reward calibrated abstention, thus realigning incentives in model development.
+
+            <br/>
+            <br/>
+
+            Joint work with Santosh Vempala (Georgia Tech) and Ofir Nachum & Edwin Zhang (OpenAI)
+        </p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-md">
         <h3 class="text-xl font-semibold mb-1">What Can Cryptography Tell Us About AI?</h3>
         <p class="text-md text-gray-700 mb-1">Greg Gluch (Simons Institute, UC Berkeley)</p>
         <p class="text-sm text-gray-500 mb-2">October 14, 2025</p>
@@ -122,7 +147,7 @@
             
             Based on: A Liu, A Moitra. <a href="https://dl.acm.org/doi/pdf/10.1145/3717823.3718220">Model Stealing for Any Low-Rank Language Model</a>. STOC 2025.
         </p>
-    </div>
+      </div>
 
     <div class="bg-white p-6 rounded-xl shadow-md">
         <h3 class="text-xl font-semibold mb-1">Proofs for Distribution Properties: Review of Recent Results</h3>
