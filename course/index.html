@@ -46,7 +46,7 @@
 <div id="main">
 <div id="title">
     <span class="blue">MIT 6.S976 and 18.S996 (Spring 2026)</span> <br />
-    <span class="maroon">Cryptography and Machine Learning </span>
+    <span class="maroon">Cryptography and Machine Learning: Foundations and Frontiers </span>
 </div>
 
 <br />
@@ -54,13 +54,16 @@
 <div id="inner">
     <!-- <img width=40% src="course-poster-for-the-web.jpg"> -->
 <h1>Course Description</h1>
+Cryptography offers a playbook for building trust on untrusted platforms. This course applies that playbook to modern machine learning. We will study how cryptographic modeling and tools—ranging from privacy-preserving algorithms to interactive proofs and debate protocols—can endow ML systems with privacy, verifiability, and reliability. Topics include mechanisms for data and model privacy; methods to verify average-case quality and certify worst-case correctness; and strategies for robustness and alignment across discriminative and generative models. The course will start to draw the contours of a new field at the Crypto × ML interface and identify concrete problems in trustworthy ML that benefit from cryptographic thinking and techniques.
 
-    TBD
+
+
 
     <br /><br />
 
     <b>Prerequisites: </b>
-    TBD
+    6.1220 (Algorithms) AND 6.390 (Intro to Machine Learning); or equivalent. Alternatively, permission from the instructors.
+
 
     <br /><br />
 
@@ -88,7 +91,7 @@
                 <b>LOCATION AND TIME</b>
             </td>
             <td>
-                <strong>Tuesday and Thursday 1:00-2:30pm</strong> in <strong>2-143</strong>
+                <strong>Tuesday and Thursday 11:00-12:30pm</strong> in <strong>24-115</strong>
             </td>
         </tr>
 
@@ -99,14 +102,13 @@
             </td>
             <td>
                 <strong>Neekon Vafa</strong> <br />
-                Email: nvafa at mit dot edu <br />
-                Office hours: Tuesdays 5:30-7:30pm. <b>Location</b>: 36-155.
+                Email: nvafa at mit dot edu
                 <br /><br />
             </td>
         </tr>
 
 
-        <tr>
+      <!--  <tr>
             <td valign="top" halign="left">
                 <b>RESOURCES</b>
             </td>
@@ -114,33 +116,19 @@
               TBD
             </td>
         </tr>
-
+     -->
 
 
         <tr valign="top" halign="left">
             <td><b>ASSIGNMENTS AND GRADING</b></td>
             <td>
-                Grading will be based on the problem sets, midterm exam, and class participation.
-                There will be 6 problem sets and your top 5 scores will count towards your grade.
-You have a total of 10 late days to use across the 6 psets (max of 5 late days for any single pset). You can use these late days however you like; we will use the timestamp of your Gradescope submission to calculate the number of late days.
-
+                Grading will be based on 1-2 problem sets, a final project and class participation.
                 <br /> <br />
 
-                <b>Submitting psets:</b>
-                <ul>
-                    <li> You should typeset your pset answers in LaTeX. </li>
-                    <li> PDFs are to be submitted via <a href="https://www.gradescope.com/courses/606189">Gradescope</a> on or before 11:59:59pm ET on the due date. The Gradescope access code is available on the course information page on Piazza.
- </li>
-                    <li> Solutions will be posted on piazza.
-                    </li>
-                </ul>
-
-              <br />
-
-                <b>Released problem sets:</b>
 
         </tr>
 
+        <!--
         <tr valign="top" halign="left">
             <td><b>COLLABORATION POLICY</b></td>
             <td>
@@ -153,6 +141,272 @@ You have a total of 10 late days to use across the 6 psets (max of 5 late days f
                 Of course, scavenging for solutions from prior years is forbidden.
             </td>
         </tr>
+      -->
     </tbody> </table>
 
     <br />
+
+
+    <h1>Schedule <small> (tentative and subject to change) </small> </h1>
+
+    <table class="schedule">
+      <tr>
+        <td class="top" width="15%"><font color="white">Lecture</font></td>
+        <td class="top" width="60%"><font color="white">Topic</font></td>
+        <!-- <td class="top" width="25%"><font color="white">References</font></td> -->
+      </tr>
+
+      <tr style="background-color:#d3d3d3">
+       <td valign="top"> </td>
+       <td valign="top"> <strong>Module 1: Introduction to the Course and ML/Crypto Basics </strong> </td>
+     </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 1 (Tue Feb 3)
+    </td>
+    <td valign="top">
+      Overview of the course. <a href="https://people.csail.mit.edu/vinodv/TCC2025.pdf">Shafi's Slides</a> and <a href="https://people.csail.mit.edu/vinodv/TCC2025.pdf">Vinod's Slides</a>.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 2 (Thu Feb 5)
+    </td>
+    <td valign="top">
+      ML basics 1: Classification, Regression, Generation. Access models to data.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 3 (Tue Feb 10)
+    </td>
+    <td valign="top">
+      Crypto basics: Secure communication, one-time pads, pseudorandomness (computational indistinguishability).
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 4 (Thu Feb 12)
+    </td>
+    <td valign="top">
+      Crypto basics, continued: pseudorandom generators (one-time pad) and functions (encryption, MAC), private-key encryption
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      No Lecture (Tue Feb 17)
+    </td>
+    <td valign="top">
+      <em>No classes</em>
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 5 (Thu Feb 19)
+    </td>
+    <td valign="top">
+      Watermarking: problem definition, digital signatures, classical approaches, watermarking LLM outputs.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 6 (Tue Feb 24)
+    </td>
+    <td valign="top">
+      Watermarking: pseudorandom codes and robust watermarking; open problems.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 7 (Thu Feb 26)
+    </td>
+    <td valign="top">
+      Verification: crypto tools, interactive proofs, zero knowledge.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 8 (Tue Mar 3)
+    </td>
+    <td valign="top">
+      PAC verification: how to verify properties of models?
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 9 (Thu Mar 5)
+    </td>
+    <td valign="top">
+      ML Basics: LLM, hallucinations.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 10 (Tue Mar 10)
+    </td>
+    <td valign="top">
+      Self-proving LLM, modify interactive proofs to the learning setting.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 11 (Thu Mar 12)
+    </td>
+    <td valign="top">
+      Hallucinations and how to mitigate them.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 12 (Tue Mar 17)
+    </td>
+    <td valign="top">
+      Robustness: adversarial examples.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 13 (Thu Mar 19)
+    </td>
+    <td valign="top">
+      Robust statistics (in training).
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 14 (Tue Mar 31)
+    </td>
+    <td valign="top">
+      Backdoors in ML.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 15 (Thu Apr 2)
+    </td>
+    <td valign="top">
+      Lean: a different take on verification.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 16 (Tue Apr 7)
+    </td>
+    <td valign="top">
+      Alignment 1.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 17 (Thu Apr 9)
+    </td>
+    <td valign="top">
+      Alignment 2.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 18 (Tue Apr 14)
+    </td>
+    <td valign="top">
+      Privacy 1: differential privacy, copyright protection.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 19 (Thu Apr 16)
+    </td>
+    <td valign="top">
+      Privacy 2: machine unlearning.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 20 (Tue Apr 21)
+    </td>
+    <td valign="top">
+      Privacy 3: model stealing.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 21 (Thu Apr 23)
+    </td>
+    <td valign="top">
+      Model stealing, continued.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 22 (Tue Apr 28)
+    </td>
+    <td valign="top">
+      Privacy 4: cryptographic techniques, Homomorphic Encryption, Private Information Retrieval. ML techniques, embeddings.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 23 (Thu Apr 30)
+    </td>
+    <td valign="top">
+      Cryptographic techniques, continued. Federated learning.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 24 (Tue May 5)
+    </td>
+    <td valign="top">
+      Crypto for ML efficiency.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 25 (Tue May 7)
+    </td>
+    <td valign="top">
+      Project presentations.
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top">
+      Lecture 26 (Tue May 12)
+    </td>
+    <td valign="top">
+      Project presentations.
+    </td>
+  </tr>
+</table>
+
+
+</div>
+</div>
+</body>
+</html>
