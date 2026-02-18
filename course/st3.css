@@ -113,7 +113,7 @@ a:hover { background-color: #EEE; }
 table.schedule {
 border-collapse:collapse;
 border: outset 3px #888; border-spacing: 0px;
-width: 70em;
+width: 100%;
 }
 
 
