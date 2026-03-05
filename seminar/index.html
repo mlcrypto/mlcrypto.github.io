@@ -86,6 +86,25 @@
                   <!-- <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-11-04/Hallucinations.pdf">Slides</a> -->
                </div>
                <p id="abstract-107" class="text-sm text-gray-800 hidden" style="display:none;">
+                  We initiate an investigation of learning tasks in a setting where the learner is given access to two 
+                  competing provers, only one of which is honest. Specifically, we consider the power of such learners 
+                  in assessing purported properties of opaque models. Following prior work in complexity theory that 
+                  considers the power of competing provers in various settings, we call this setting refereed learning.
+
+                  After formulating a general definition of refereed learning tasks, we show refereed learning protocols 
+                  that obtain a level of accuracy that far exceeds what is obtainable at comparable cost without provers, 
+                  or even with a single prover. We concentrate on the task of choosing the better one out of two black-box 
+                  models, with respect to some ground truth. While we consider a range of parameters, perhaps our most 
+                  notable result is in the high-precision range: For all $\epsilon > 0$ and ambient dimension $d$, 
+                  our learner makes only one query to the ground truth function, communicates only $(1 + 1/\epsilon^2) \cdot \mathsf{poly}(d)$ 
+                  bits with the provers, and outputs a model whose loss is within a multiplicative factor of $(1 + \epsilon)$ 
+                  of the best model's loss. Obtaining comparable loss with a single prover would require the learner to access the 
+                  ground truth at almost all of the points in the domain.
+                  <br><br>
+                  We also present lower bounds that demonstrate the optimality of our protocols in a number of respects, 
+                  including prover complexity, number of samples, and need for query access.
+                  <br><br>
+                  Based on joint work with Ran Canetti and Ephraim Linder. <a href="https://arxiv.org/abs/2510.05440">https://arxiv.org/abs/2510.05440</a>
                </p>
             </div>
 
