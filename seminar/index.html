@@ -74,7 +74,36 @@
          </p>
          <div class="grid gap-6">
             <h2 class="text-2xl font-bold mt-10 text-blue-700">Upcoming Talks</h2>
-
+            
+            <div class="bg-white p-6 rounded-xl shadow-md">
+               <h3 class="text-xl font-semibold mb-1">How to Sketch a Learning Algorithm</h3>
+               <p class="text-md text-gray-700 mb-1">Sam Gunn (UC Berkeley)</p>
+               <p class="text-sm text-gray-500 mb-2">May 5, 2026</p>
+               <div class="flex items-center space-x-4">
+                  <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-112')">
+                  Abstract
+                  </button>
+                  <!-- <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-11-04/Hallucinations.pdf">Slides</a> -->
+               </div>
+               <p id="abstract-112" class="text-sm text-gray-800 hidden" style="display:none;">
+                  How does the choice of training data influence an AI model? This question is of central importance to interpretability, privacy, and basic science. At its core is the data deletion problem: after a reasonable amount of precomputation, quickly predict how the model would behave in a given situation if a given subset of training data had been excluded from the learning process.
+                  <br/>
+                  <br/>
+                  I will present the first data deletion scheme capable of predicting model outputs with vanishing error ε and failure probability δ in the deep learning setting. The precomputation and prediction algorithms are only Õ(log(1/δ)/ε^2) factors slower than regular training and inference, respectively. The storage requirements are those of Õ(log(1/δ)/ε^2) models.
+                  <br/>
+                  <br/>
+                  The proof is based on a simple assumption about the stability of training. In contrast to the assumptions made by prior work, stability appears to be fully compatible with learning powerful AI models. In support of this, I will demonstrate that stability is satisfied in a minimal set of experiments.
+                  <br/>
+                  <br/>
+                  At a technical level, this work is based on a new method for locally sketching an arithmetic circuit by computing higher-order derivatives in random complex directions. Forward-mode automatic differentiation allows cheap computation of these derivatives.
+                  <br/>
+                  <br/>
+                  Based on my <a href="https://arxiv.org/pdf/2604.07328">recent work</a>.
+               </p>
+            </div>
+            
+            <h2 class="text-2xl font-bold mt-10 text-blue-700">Spring 2026</h2>
+            
             <div class="bg-white p-6 rounded-xl shadow-md">
                <h3 class="text-xl font-semibold mb-1">Consensus Sampling for Safer Generative AI</h3>
                <p class="text-md text-gray-700 mb-1">Yael Tauman Kalai (MIT)</p>
@@ -98,23 +127,6 @@
                   This is joint work with Adam Tauman Kalai and Or Zamir.
                </p>
             </div>
-            
-            <div class="bg-white p-6 rounded-xl shadow-md">
-               <h3 class="text-xl font-semibold mb-1">How to Sketch a Learning Algorithm</h3>
-               <p class="text-md text-gray-700 mb-1">Sam Gunn (UC Berkeley)</p>
-               <p class="text-sm text-gray-500 mb-2">May 5, 2026</p>
-               <div class="flex items-center space-x-4">
-                  <button class="text-blue-600 underline text-sm mb-2" onclick="toggleAbstract('abstract-112')">
-                  Abstract
-                  </button>
-                  <!-- <a class="text-blue-600 underline text-sm mb-2 no-dotted" href="static/2025-11-04/Hallucinations.pdf">Slides</a> -->
-               </div>
-               <p id="abstract-112" class="text-sm text-gray-800 hidden" style="display:none;">
-                  Coming soon.
-               </p>
-            </div>
-            
-            <h2 class="text-2xl font-bold mt-10 text-blue-700">Spring 2026</h2>
             
             <div class="bg-white p-6 rounded-xl shadow-md">
                <h3 class="text-xl font-semibold mb-1">Subliminal Transfer in Training Data and Low Logit Rank</h3>
