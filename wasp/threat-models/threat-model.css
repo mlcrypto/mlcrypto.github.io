@@ -1,0 +1,23 @@
+.threat-model{max-width:970px;padding-top:35px;padding-bottom:20px}
+.note-back{font:14px/1.6 var(--ui);margin:0 0 32px}
+.note-heading h1{font-size:44px;line-height:1.15;letter-spacing:-.025em;margin:10px 0 20px;font-weight:normal}
+.note-heading .lead{font-size:21px;line-height:1.5;max-width:760px}
+.note-source{font:14px/1.8 var(--ui);color:var(--muted)}
+.note-status{border-left:3px solid var(--accent);background:var(--pale);padding:16px 21px;margin:28px 0;font:14px/1.8 var(--ui)}
+.threat-model section{margin:34px 0;padding-top:25px;border-top:1px solid var(--line);scroll-margin-top:25px}
+.threat-model h2{font-weight:normal;font-size:29px;line-height:1.25;margin:0 0 17px;color:var(--accent)}
+.threat-model h3{font-size:21px;font-weight:normal;margin:24px 0 10px}
+.threat-model p{line-height:1.75}
+.threat-model strong{font-weight:600}
+.threat-model a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.model-profile{display:grid;grid-template-columns:160px minmax(0,1fr);margin:20px 0 0}
+.model-profile dt,.model-profile dd{border-top:1px solid var(--line);padding:16px 0;margin:0}
+.model-profile dt{font:14px/1.7 var(--ui);color:var(--accent);padding-right:20px}
+.model-profile dd{font-size:17px;line-height:1.75}
+.game-steps{padding-left:25px}.game-steps li{padding-left:9px;margin:0 0 17px;line-height:1.75}
+.game-equation{padding:18px 22px;background:var(--pale);border:1px solid var(--line);font:18px/1.8 var(--serif);overflow-wrap:anywhere}
+.game-equation p{margin:0}.game-equation p+p{margin-top:7px}
+.model-tags{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.model-tags span{font:12px/1.5 var(--ui);border:1px solid var(--line);padding:5px 9px;color:var(--accent)}
+.threat-model .note-end{font:13px/1.8 var(--ui);color:var(--muted);margin-top:30px}
+@media(max-width:700px){.threat-model{padding-top:25px}.note-heading h1{font-size:33px}.note-heading .lead{font-size:19px}.note-back{margin-bottom:26px}.threat-model h2{font-size:26px}.model-profile{display:block}.model-profile dt{padding:14px 0 4px}.model-profile dd{border:0;padding:0 0 15px}.game-equation{font-size:17px;padding:15px}.note-status{padding:13px 16px}}
