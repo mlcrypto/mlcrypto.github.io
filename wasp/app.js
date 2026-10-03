@@ -57,7 +57,7 @@ function render(){
   const p=view.items[i],controls=document.createElement('div');
   controls.className='paper-votes';controls.dataset.votePaper=p.id;
   controls.setAttribute('role','group');controls.setAttribute('aria-label','Your vote total for '+p.title);
-  controls.innerHTML=`<button type="button" data-vote="1" aria-label="Increase vote total: ${escape(p.title)}" title="Add one vote">↑</button><span class="vote-total" data-vote-total title="Private vote total">0</span><button type="button" data-vote="-1" aria-label="Decrease vote total: ${escape(p.title)}" title="Subtract one vote">↓</button>`;
+  controls.innerHTML=`<span>Vote</span><span class="vote-arrows"><button type="button" data-vote="1" aria-label="Increase vote total: ${escape(p.title)}" title="Add one vote">↑</button><button type="button" data-vote="-1" aria-label="Decrease vote total: ${escape(p.title)}" title="Subtract one vote">↓</button></span><span class="vote-total" data-vote-total title="Private vote total">0</span>`;
   card.querySelector('.paper-meta').after(controls);
  }
  renderVotes();renderTopics();saveState();
