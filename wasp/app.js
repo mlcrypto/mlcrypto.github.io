@@ -2,7 +2,7 @@ import {buildGraph,pageRank,searchPapers,sortPapers} from './ranking.js';
 import {filterArrivals,updateSummary} from './updates.js';
 import {paperNotes} from './paper-notes.js';
 import {PAGE_SIZES,normalizePageSize,paginate} from './pagination.js';
-import {VOTE_STORAGE_KEY,createVoteStore,exportVotes} from './votes.js?v=2';
+import {VOTE_STORAGE_KEY,createVoteStore} from './votes.js?v=2';
 const $=id=>document.getElementById(id),escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const params=new URLSearchParams(location.search);
 const state={q:params.get('q')||'',author:params.get('author')||'',topic:params.get('topic')||'all',sort:params.get('sort')||'influence',added:params.get('added')||'all',size:normalizePageSize(params.get('size')),page:Math.max(1,Number(params.get('page'))||1)};
@@ -11,7 +11,7 @@ const votes=createVoteStore(()=>window.localStorage);
 const fmt=n=>new Intl.NumberFormat('en-US').format(n);
 function safeLink(url){try{const u=new URL(url);return u.protocol==='https:'||u.protocol==='http:'?escape(u.href):'#'}catch{return '#'}}
 function saveState(){const p=new URLSearchParams();for(const k of ['q','author','topic','sort','added','size','page'])if(state[k]&&state[k]!==({topic:'all',sort:'influence',added:'all',size:'15',page:1})[k])p.set(k,state[k]);history.replaceState(null,'',location.pathname+(p.size?'?'+p:'')+location.hash)}
-function topicButton(topic,count){return `<button class="topic-button" type="button" data-topic="${escape(topic)}" aria-pressed="${state.topic===topic}"><span>${escape(topic==='all'?'All research':topic)}</span><span>${fmt(count)}</span></button>`}
+function topicButton(topic,count){return `<button class="topic-button" type="button" data-topic="${escape(topic)}" aria-pressed="${state.topic===topic}"><span>${escape(topic==='all'?'All Papers':topic)}</span><span>${fmt(count)}</span></button>`}
 function renderTopics(){ $('topics').innerHTML=topicButton('all',papers.length)+topics.map(([t,n])=>topicButton(t,n)).join(''); }
 function metric(p,type,max){
  if(type==='citations')return p.citationCount==null?'<div class="metric missing"><span class="metric-value">—</span><span class="metric-label">Unavailable</span></div>':`<div class="metric"><a href="${safeLink(p.citationSource)}" target="_blank" rel="noopener noreferrer" title="Semantic Scholar · retrieved ${escape(p.citationUpdated)}"><span class="metric-value">${fmt(p.citationCount)}</span></a><span class="metric-label">citations</span></div>`;
@@ -33,12 +33,9 @@ function renderVotes(){
    button.disabled=votes.blocked||!Number.isSafeInteger(score+Number(button.dataset.vote));
   }
  }
- $('vote-summary').textContent=`Private totals for ${fmt(votes.records.length)} ${votes.records.length===1?'paper':'papers'}`;
- $('download-votes').disabled=!votes.records.length;
  $('vote-storage-note').textContent=votes.blocked?'Saved votes could not be read. Voting is disabled to avoid overwriting them.':
-  votes.persistent?'Saved only in this browser. Download a backup before clearing browser data. Votes do not affect rankings.':
-  'Browser storage is unavailable. Votes are kept only in this tab—download them before closing or reloading.';
- $('vote-storage-note').classList.toggle('vote-warning',votes.blocked||!votes.persistent);
+  votes.persistent?'':'Browser storage is unavailable. Vote changes will be lost when this tab is closed or reloaded.';
+ $('vote-storage-note').hidden=!votes.blocked&&votes.persistent;
 }
 function render(){
  if(!papers)return;
@@ -47,7 +44,7 @@ function render(){
  const view=paginate(filtered,state);state.page=view.page;state.size=view.size;
  const eligible=papers.filter(p=>state.topic==='all'||p.topics.includes(state.topic));
  const max=Math.max(0,...eligible.map(p=>ranking.scores.get(p.id)||0));
- $('topic-title').textContent=state.topic==='all'?'All research':state.topic;
+ $('topic-title').textContent=state.topic==='all'?'All Papers':state.topic;
  $('result-count').textContent=filtered.length?`${fmt(filtered.length)} ${filtered.length===1?'paper':'papers'}${state.q||state.author?' matching your search':''} · ${state.size==='all'?'showing all '+fmt(filtered.length):`showing ${fmt(view.start+1)}–${fmt(view.end)}`}`:'No matching papers';
  $('coverage-note').textContent=`Citation counts available for ${fmt(filtered.filter(p=>p.citationCount!=null).length)} of these ${fmt(filtered.length)} papers. ${graph.edges?'Influence uses the retrieved in-collection citation graph.':'Citation graph not yet available; influence scores are withheld.'}`;
  $('results').innerHTML=filtered.length?view.items.map((p,i)=>paperCard(p,view.start+i,max)).join(''):'<div class="empty"><h3>No papers found.</h3><p>Try fewer keywords, a different author, or another topic.</p><button class="text-button" type="button" data-clear>Clear all filters</button></div>';
@@ -76,13 +73,7 @@ $('results').addEventListener('click',e=>{
  votes.adjust(p,Number(button.dataset.vote),catalog.generated);renderVotes();
  const current=votes.records.find(r=>r.paper.id===p.id);
  $('vote-action-status').textContent=votes.blocked?'Vote not changed: saved votes could not be read.':
-  `Vote total for ${p.title}: ${fmt(current?.score??0)}. ${votes.persistent?'Saved in this browser.':'Download to keep your changes.'}`;
-});
-$('download-votes').addEventListener('click',()=>{
- if(!votes.records.length)return;
- const url=URL.createObjectURL(new Blob([exportVotes(votes.records)],{type:'application/json;charset=utf-8'}));
- const link=document.createElement('a');link.href=url;link.download=`wasp-votes-${new Date().toISOString().slice(0,10)}.json`;
- document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+  `Vote total for ${p.title}: ${fmt(current?.score??0)}. ${votes.persistent?'Saved in this browser.':'Changes will be lost when this tab is closed or reloaded.'}`;
 });
 window.addEventListener('storage',event=>{if(event.key===VOTE_STORAGE_KEY||event.key===null){votes.reload();renderVotes();}});
 document.addEventListener('click',e=>{const t=e.target.closest('[data-topic],[data-author],[data-page],[data-clear]');if(!t)return;if(t.hasAttribute('data-clear'))return reset();if(t.dataset.topic){state.topic=t.dataset.topic;state.page=1;}if(t.dataset.author){state.author=t.dataset.author;state.page=1;}if(t.dataset.page){state.page=Number(t.dataset.page);$('results').scrollIntoView({block:'start'});}sync()});
