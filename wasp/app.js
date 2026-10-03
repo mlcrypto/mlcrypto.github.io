@@ -47,7 +47,6 @@ function render(){
  const max=Math.max(0,...eligible.map(p=>ranking.scores.get(p.id)||0));
  $('topic-title').textContent=state.topic==='all'?'All Papers':state.topic;
  $('result-count').textContent=filtered.length?`${fmt(filtered.length)} ${filtered.length===1?'paper':'papers'}${state.q||state.author?' matching your search':''} · ${state.size==='all'?'showing all '+fmt(filtered.length):`showing ${fmt(view.start+1)}–${fmt(view.end)}`}`:'No matching papers';
- $('coverage-note').textContent=`Citation counts available for ${fmt(filtered.filter(p=>p.citationCount!=null).length)} of these ${fmt(filtered.length)} papers. ${graph.edges?'Influence uses the retrieved in-collection citation graph.':'Citation graph not yet available; influence scores are withheld.'}`;
  $('results').innerHTML=filtered.length?view.items.map((p,i)=>paperCard(p,view.start+i,max)).join(''):'<div class="empty"><h3>No papers found.</h3><p>Try fewer keywords, a different author, or another topic.</p><button class="text-button" type="button" data-clear>Clear all filters</button></div>';
  $('pagination').hidden=view.pages<=1;
  $('pagination').innerHTML=view.pages>1?`<button type="button" data-page="${state.page-1}" ${state.page===1?'disabled':''}>← Previous</button><span>Page ${state.page} of ${view.pages}</span><button type="button" data-page="${state.page+1}" ${state.page===view.pages?'disabled':''}>Next →</button>`:'';
