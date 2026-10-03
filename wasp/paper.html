@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Paper wiki — WASP</title>
+ <meta name="description" content="A shared, editable paper summary and discussion on WASP.">
+ <link rel="icon" type="image/png" href="assets/wasp.png">
+ <link rel="stylesheet" href="styles.css?v=068dcaad906e"><link rel="stylesheet" href="paper.css?v=08ae80003f26">
+ <script type="module" src="paper.js?v=fc3ccaecd7aa"></script>
+</head>
+<body>
+ <a class="skip" href="#paper">Skip to paper</a>
+ <header><div class="masthead"><a class="brand" href="../wasp.html" aria-label="WASP home"><img class="wasp-mark" src="assets/wasp.png" alt="Wasp illustration" width="52" height="52">WASP<span>Website for AI Safety Papers</span></a><nav aria-label="Main navigation"><a href="../wasp.html">Paper library</a><a href="../wasp.html#about">About the collection</a></nav></div></header>
+ <main class="paper-wiki" id="paper">
+  <a class="back-link" href="../wasp.html">Paper library</a>
+  <div id="paper-loading" role="status">Loading paper…</div>
+  <div id="paper-content" hidden>
+   <div class="wiki-heading"><h1 id="paper-title"></h1><p id="paper-authors"></p><p id="paper-meta"></p><div class="source-links" id="source-links"></div><p id="editorial-note" hidden></p></div>
+   <section aria-labelledby="summary-heading">
+    <div class="section-heading"><h2 id="summary-heading">High-level summary</h2><button id="edit-summary" type="button" disabled>Edit summary</button></div>
+    <p id="summary-origin" class="wiki-meta"></p><div id="summary-text" class="prose"></div>
+    <form id="summary-form" hidden>
+     <label for="summary-body">Summary</label><textarea id="summary-body" rows="10" maxlength="12000" minlength="40" required></textarea>
+     <label for="summary-name">Name (optional, not verified)</label><input id="summary-name" maxlength="60" autocomplete="nickname">
+     <div class="bot-field" aria-hidden="true"><label for="summary-website">Leave this field empty</label><input id="summary-website" tabindex="-1" autocomplete="off"></div>
+     <p class="wiki-meta">Edits are public and saved in the revision history. No sign-in required.</p>
+     <div class="form-actions"><button id="save-summary" type="submit">Save summary</button><button id="cancel-summary" type="button" class="secondary">Cancel</button></div>
+    </form>
+    <p id="summary-status" class="form-status" role="status"></p>
+    <details id="history"><summary>Summary history</summary><div id="history-list"></div><button id="more-history" type="button" hidden>Older revisions</button></details>
+   </section>
+   <section aria-labelledby="comments-heading">
+    <h2 id="comments-heading">Questions &amp; comments</h2><p class="wiki-meta">Public discussion. You may post anonymously; names are not verified.</p>
+    <form id="comment-form">
+     <label for="comment-body">Your question or comment</label><textarea id="comment-body" rows="4" maxlength="4000" minlength="3" required></textarea>
+     <label for="comment-name">Name (optional, not verified)</label><input id="comment-name" maxlength="60" autocomplete="nickname">
+     <div class="bot-field" aria-hidden="true"><label for="comment-website">Leave this field empty</label><input id="comment-website" tabindex="-1" autocomplete="off"></div>
+     <div class="form-actions"><button id="post-comment" type="submit" disabled>Post comment</button></div>
+    </form><p id="comment-status" class="form-status" role="status"></p>
+    <div id="comment-list" aria-live="polite"></div><button id="more-comments" type="button" hidden>Older comments</button>
+   </section>
+   <details class="paper-abstract"><summary>Original abstract</summary><p id="paper-abstract" class="prose"></p></details>
+  </div>
+ </main><footer><span>WASP · Wiki for AI Safety Papers</span><span>Community contributions are not reviewed claims.</span></footer>
+ <noscript><p class="noscript">JavaScript is required to load this paper and its discussion.</p></noscript>
+</body></html>
