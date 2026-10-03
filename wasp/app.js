@@ -2,7 +2,7 @@ import {buildGraph,pageRank,searchPapers,sortPapers} from './ranking.js';
 import {filterArrivals,updateSummary} from './updates.js';
 import {paperNotes} from './paper-notes.js';
 import {PAGE_SIZES,normalizePageSize,paginate} from './pagination.js';
-import {VOTE_STORAGE_KEY,createVoteStore,exportVotes} from './votes.js';
+import {VOTE_STORAGE_KEY,createVoteStore,exportVotes} from './votes.js?v=2';
 const $=id=>document.getElementById(id),escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const params=new URLSearchParams(location.search);
 const state={q:params.get('q')||'',author:params.get('author')||'',topic:params.get('topic')||'all',sort:params.get('sort')||'influence',added:params.get('added')||'all',size:normalizePageSize(params.get('size')),page:Math.max(1,Number(params.get('page'))||1)};
@@ -25,14 +25,15 @@ function paperCard(p,index,max){
  return `<article class="paper"><div class="paper-main"><div class="paper-header"><span class="paper-index">${String(index+1).padStart(2,'0')}</span><h3><a href="${safeLink(p.url)}" target="_blank" rel="noopener noreferrer">${escape(p.title)}</a></h3></div><p class="authors">${authors}</p><p class="paper-meta">${p.year}<span class="separator">·</span>${escape(p.venue||'arXiv preprint')}<span class="separator">·</span><a href="${safeLink(p.pdf)}" target="_blank" rel="noopener noreferrer">PDF ↗</a>${p.autoScreened?'<span class="screening-badge" title="Title/abstract screening; not an individual review">Auto-screened</span>':''}</p>${note?`<p class="paper-note"><a href="${escape(note.path)}">${escape(note.label)} <span aria-hidden="true">→</span></a></p>`:''}<div class="tags">${p.topics.slice(0,4).map(t=>`<button class="tag" type="button" data-topic="${escape(t)}">${escape(t)}</button>`).join('')}</div><details><summary>Abstract</summary><p class="abstract">${escape(p.abstract||'No abstract available in this record.')}</p>${p.authors.length>5?`<p class="source-note">All authors: ${escape(p.authors.join(', '))}</p>`:''}${evidence}<p class="source-note">${escape(p.origin)}${p.firstSeen?' · added '+escape(p.firstSeen.slice(0,10)):''} · arXiv ${escape(p.id)}<br>${p.citationCount==null?'Citation count not yet retrieved.':`Citation count: Semantic Scholar, retrieved ${escape(p.citationUpdated)}.`} ${p.referencesFetched?'Reference list retrieved.':'Reference list unavailable.'}</p></details></div>${metric(p,'citations',max)}${metric(p,'rank',max)}</article>`;
 }
 function renderVotes(){
- const byId=new Map(votes.records.map(r=>[r.paper.id,r.vote]));
+ const byId=new Map(votes.records.map(r=>[r.paper.id,r.score]));
  for(const control of document.querySelectorAll('[data-vote-paper]')){
+  const score=byId.get(control.dataset.votePaper)??0;
+  control.querySelector('[data-vote-total]').textContent=fmt(score);
   for(const button of control.querySelectorAll('[data-vote]')){
-   button.setAttribute('aria-pressed',String(byId.get(control.dataset.votePaper)===button.dataset.vote));
-   button.disabled=votes.blocked;
+   button.disabled=votes.blocked||!Number.isSafeInteger(score+Number(button.dataset.vote));
   }
  }
- $('vote-summary').textContent=`${fmt(votes.records.length)} private ${votes.records.length===1?'vote':'votes'}`;
+ $('vote-summary').textContent=`Private totals for ${fmt(votes.records.length)} ${votes.records.length===1?'paper':'papers'}`;
  $('download-votes').disabled=!votes.records.length;
  $('vote-storage-note').textContent=votes.blocked?'Saved votes could not be read. Voting is disabled to avoid overwriting them.':
   votes.persistent?'Saved only in this browser. Download a backup before clearing browser data. Votes do not affect rankings.':
@@ -55,8 +56,8 @@ function render(){
  for(const [i,card] of [...$('results').querySelectorAll('.paper')].entries()){
   const p=view.items[i],controls=document.createElement('div');
   controls.className='paper-votes';controls.dataset.votePaper=p.id;
-  controls.setAttribute('role','group');controls.setAttribute('aria-label','Your vote for '+p.title);
-  controls.innerHTML=`<span>Your vote</span><button type="button" data-vote="up" aria-pressed="false" aria-label="Upvote: ${escape(p.title)}" title="Upvote; click again to undo">↑ Upvote</button><button type="button" data-vote="down" aria-pressed="false" aria-label="Downvote: ${escape(p.title)}" title="Downvote; click again to undo">↓ Downvote</button>`;
+  controls.setAttribute('role','group');controls.setAttribute('aria-label','Your vote total for '+p.title);
+  controls.innerHTML=`<button type="button" data-vote="1" aria-label="Increase vote total: ${escape(p.title)}" title="Add one vote">↑</button><span class="vote-total" data-vote-total title="Private vote total">0</span><button type="button" data-vote="-1" aria-label="Decrease vote total: ${escape(p.title)}" title="Subtract one vote">↓</button>`;
   card.querySelector('.paper-meta').after(controls);
  }
  renderVotes();renderTopics();saveState();
@@ -72,10 +73,10 @@ $('page-size').addEventListener('change',()=>{state.size=normalizePageSize($('pa
 $('results').addEventListener('click',e=>{
  const button=e.target.closest('[data-vote]');if(!button)return;
  const p=papers.find(p=>p.id===button.closest('[data-vote-paper]').dataset.votePaper);if(!p)return;
- votes.toggle(p,button.dataset.vote,catalog.generated);renderVotes();
+ votes.adjust(p,Number(button.dataset.vote),catalog.generated);renderVotes();
  const current=votes.records.find(r=>r.paper.id===p.id);
  $('vote-action-status').textContent=votes.blocked?'Vote not changed: saved votes could not be read.':
-  `${current?current.vote==='up'?'Upvoted':'Downvoted':'Vote removed for'}: ${p.title}. ${votes.persistent?'Saved in this browser.':'Download to keep your changes.'}`;
+  `Vote total for ${p.title}: ${fmt(current?.score??0)}. ${votes.persistent?'Saved in this browser.':'Download to keep your changes.'}`;
 });
 $('download-votes').addEventListener('click',()=>{
  if(!votes.records.length)return;
